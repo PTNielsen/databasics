@@ -1,0 +1,41 @@
+1. How many users are there?
+
+   I used "SELECT count(id) FROM users;" to find that there are 49 users.
+  
+2. What are the 5 most expensive items?
+
+    I used "SELECT * FROM items order by price desc limit 5;" to find that the five most expensive items are:
+      Georgeous Plastic Pants - 99.44
+      Intelligent Cotton Com  - 90.96
+      Small Concrete Pants    - 90.32
+      Gorgeous Granite Pants  - 90.24
+      Rustic Concrete Pants   - 87.53
+
+3. What is the cheapest electronics item?
+
+    I used "SELECT * FROM items WHERE category="Electronics" order by price asc limit 1;" to find that the Rustic Wooden Table is the least expensive Electronics item at 63.3.  I could also use "SELECT * from items WHERE category like "%Electronics%" order by price asc limit 1;" that the cheapest item under Electronics & Movies is Intelligent Wooden Car at 18.48.
+
+4. Who lives at "489 Fritsch Island"? Do they have another address?
+
+    I first used "SELECT * FROM addresses WHERE street="489 Fritsch Island";" to find the User ID associated with that address and then used "SELECT * FROM users JOIN addresses ON users.id = addresses.user_id WHERE user_id = 35;" to find that Marty Schmidt lives at 489 Fritsch Island.  They also have another address on file which is 84642 Bosco Orchard.
+
+5. Correct Tevin Mitchell's New York zip code to 10108.
+
+    I would first use "SELECT * FROM users WHERE first_name="Tevin"; to find their User ID and then use "UPDATE addresses SET zip="10108" WHERE user_id= 25 and state="New York";" to change the zip code on Tevin Mitchell's New York address.
+
+6. How much would it cost to buy one of each piece of jewelery?
+
+    I used "SELECT sum(price) FROM items where category like "%Jewelery%";" to find that the cost to buy one of each piece of jewelery is 226.26.
+
+7. How many total items did we sell?
+
+    I used "SELECT sum(quantity) FROM orders;" to find that we sold a total of 817 items.
+
+8. How much was spent on health?
+
+    I used "SELECT sum(items.price * orders.quantity) FROM orders JOIN items ON items.id = orders.item_id WHERE category="Health";" to find that 1796.20 was spent on Health.
+
+9. Simulate buying an item by inserting a User for yourself and an Order for that User (do not include this in the figures above).
+
+    I used "INSERT INTO users VALUES (null,"Patrick","Nielsen","ptnielsen55@gmail.com");" to insert myself as a user and created an order for myself for 5 Awesome Steel Computers using "INSERT INTO orders VALUES (null,51,19,5);".
+    
